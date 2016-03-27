@@ -296,13 +296,11 @@ public class Solver implements ISolver {
                 System.out.println ("One solution: 0");
             else
                 System.out.println ("One solution: " + new BigDecimal (x).setScale(2, RoundingMode.HALF_UP).doubleValue());
-            //System.out.printf ("One solution: %.2f",x);
         } else if (discriminant > 0) {
             double x1 = (-b - Math.sqrt (b * b - 4 * a * c)) / (2 * a);
             double x2 = (-b + Math.sqrt (b * b - 4 * a * c)) / (2 * a);
             System.out.println ("Two solutions: " + new BigDecimal (x1).setScale(2, RoundingMode.HALF_UP).doubleValue()
                     + " " + new BigDecimal (x2).setScale(2, RoundingMode.HALF_UP).doubleValue());
-            //System.out.printf ("Two solutions: %.2f, %.2f", x1, x2);
         }
     }
 
