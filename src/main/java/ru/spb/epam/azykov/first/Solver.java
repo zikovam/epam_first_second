@@ -239,6 +239,7 @@ public class Solver implements ISolver {
         int n = Integer.parseInt (scan.nextLine ());
         String text = scan.nextLine ();
         int countPalindromeNum = 0;
+        String neededPalindrome = null;
         for (String word :
                 text.split (" ", n)) {
             Pattern isItNumber = Pattern.compile ("\\d+");
@@ -247,13 +248,17 @@ public class Solver implements ISolver {
                 //System.out.println(word);
                 if (word.equals ( new StringBuilder(word).reverse().toString())){
                     countPalindromeNum++;
-                    if (countPalindromeNum == 2)
+                    if (countPalindromeNum == 1)
+                        neededPalindrome = word;
+                    else if (countPalindromeNum == 2)
                         System.out.println (word);
                 }
             }
         }
         if (countPalindromeNum == 0)
             System.out.println ("NOT FOUND");
+        if (countPalindromeNum == 1)
+            System.out.println (neededPalindrome);
     }
 
 //    Написать программу, которая выводит числа от 1 до N^2 в виде матрицы NxN слева направо и сверху вниз.
@@ -287,12 +292,17 @@ public class Solver implements ISolver {
             System.out.println ("No solution");
         else if (discriminant == 0) {
             double x = -b / (2 * a);
-            System.out.println ("One solution: " + new BigDecimal (x).setScale(2, RoundingMode.HALF_UP).doubleValue());
+            if (x == 0)
+                System.out.println ("One solution: 0");
+            else
+                System.out.println ("One solution: " + new BigDecimal (x).setScale(2, RoundingMode.HALF_UP).doubleValue());
+            //System.out.printf ("One solution: %.2f",x);
         } else if (discriminant > 0) {
             double x1 = (-b - Math.sqrt (b * b - 4 * a * c)) / (2 * a);
             double x2 = (-b + Math.sqrt (b * b - 4 * a * c)) / (2 * a);
             System.out.println ("Two solutions: " + new BigDecimal (x1).setScale(2, RoundingMode.HALF_UP).doubleValue()
-                                         + "\t" + new BigDecimal (x2).setScale(2, RoundingMode.HALF_UP).doubleValue());
+                    + " " + new BigDecimal (x2).setScale(2, RoundingMode.HALF_UP).doubleValue());
+            //System.out.printf ("Two solutions: %.2f, %.2f", x1, x2);
         }
     }
 
@@ -300,47 +310,53 @@ public class Solver implements ISolver {
 //    При реализации использовать оператор switch. Осуществить проверку корректности ввода числа.
     public void task11 () {
         Scanner scan = new Scanner (System.in);
-        int n = Integer.parseInt (scan.nextLine ());
-        switch (n) {
-            case (1):
-                System.out.println ("January");
-                break;
-            case (2):
-                System.out.println ("February");
-                break;
-            case (3):
-                System.out.println ("March");
-                break;
-            case (4):
-                System.out.println ("April");
-                break;
-            case (5):
-                System.out.println ("May");
-                break;
-            case (6):
-                System.out.println ("June");
-                break;
-            case (7):
-                System.out.println ("July");
-                break;
-            case (8):
-                System.out.println ("August");
-                break;
-            case (9):
-                System.out.println ("September");
-                break;
-            case (10):
-                System.out.println ("October");
-                break;
-            case (11):
-                System.out.println ("November");
-                break;
-            case (12):
-                System.out.println ("December");
-                break;
-            default:
-                System.out.println ("INCORRECT INPUT DATA");
-                break;
+        String n = scan.nextLine ();
+        if (n.length () == 1) {
+            switch (n.toCharArray ()[0]) {
+                case ('1'):
+                    System.out.println ("January");
+                    break;
+                case ('2'):
+                    System.out.println ("February");
+                    break;
+                case ('3'):
+                    System.out.println ("March");
+                    break;
+                case ('4'):
+                    System.out.println ("April");
+                    break;
+                case ('5'):
+                    System.out.println ("May");
+                    break;
+                case ('6'):
+                    System.out.println ("June");
+                    break;
+                case ('7'):
+                    System.out.println ("July");
+                    break;
+                case ('8'):
+                    System.out.println ("August");
+                    break;
+                case ('9'):
+                    System.out.println ("September");
+                    break;
+            }
+        }
+        else if ((n.length () == 2)&&(n.toCharArray ()[0] == '1')) {
+            switch (n.toCharArray ()[1]) {
+                case ('0'):
+                    System.out.println ("October");
+                    break;
+                case ('1'):
+                    System.out.println ("November");
+                    break;
+                case ('2'):
+                    System.out.println ("December");
+                    break;
+            }
+        }
+        else {
+            System.out.println ("INCORRECT INPUT DATA");
         }
     }
 
