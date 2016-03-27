@@ -2,6 +2,8 @@ package ru.spb.epam.azykov.first;
 
 import ru.spb.epam.common.first.ISolver;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -187,13 +189,13 @@ public class Solver implements ISolver {
                 }
                 //System.out.println("Word = "+word+": count = "+count);
                 if ((word.length () - 1 == count) && (word.length () > 1) && (wordCount == 0)) {
-                    System.out.print (word);
+                    System.out.println (word);
                     wordCount++;
                 }
 
             }
             if (wordCount == 0)
-                System.out.print ("NOT FOUND");
+                System.out.println ("NOT FOUND");
         }
     }
 
@@ -206,17 +208,27 @@ public class Solver implements ISolver {
         //String text2 = new HashSet<String> (Arrays.asList (text.split ("\\s/,"))).toString ();
         //System.out.println (text2);
         LinkedHashSet<String> words = new LinkedHashSet<String> (n);
+        boolean isThereAWord = false;
         for (String word :
                 text.split (" ", n)) {
             int count = new HashSet<String> (Arrays.asList (word.split (""))).size () - 1;
-            if (word.length () == count)
+            if (word.length () == count) {
                 words.add (word);
-            //System.out.print (word + "\t");
+                isThereAWord = true;
+                //System.out.print (word + "\t");
             }
-        for (String w:
-                words) {
-            System.out.print (w + " ");
         }
+
+        if (isThereAWord) {
+            for (int i = 0; i < words.size ()-1; i++) {
+                System.out.print (words.toArray ()[i] + " ");
+            }
+            System.out.println (words.toArray ()[words.size ()-1]);
+        }
+        else {
+            System.out.println ("NOT FOUND");
+        }
+
     }
 
 //    Ввести N слов. Помимо обычных слов, во входной последовательности могут встречаться целые числа.
@@ -236,12 +248,12 @@ public class Solver implements ISolver {
                 if (word.equals ( new StringBuilder(word).reverse().toString())){
                     countPalindromeNum++;
                     if (countPalindromeNum == 2)
-                        System.out.print (word);
+                        System.out.println (word);
                 }
             }
         }
         if (countPalindromeNum == 0)
-            System.out.print ("NOT FOUND");
+            System.out.println ("NOT FOUND");
     }
 
 //    Написать программу, которая выводит числа от 1 до N^2 в виде матрицы NxN слева направо и сверху вниз.
@@ -252,10 +264,12 @@ public class Solver implements ISolver {
         if (n > 0) {
             int counter = 1;
             for (int i = 1; i <= n; i++) {
-                for (int j = 1; j <= n; j++) {
+                for (int j = 1; j < n; j++) {
                     System.out.print (counter + "\t");
                     counter++;
                 }
+                System.out.print (counter);
+                counter++;
                 System.out.println ();
             }
         }
@@ -270,14 +284,15 @@ public class Solver implements ISolver {
         int c = scan.nextInt ();
         int discriminant = b * b - 4 * a * c;
         if (discriminant < 0)
-            System.out.print ("No solution");
+            System.out.println ("No solution");
         else if (discriminant == 0) {
-            double x = (double) -b / (2 * a);
-            System.out.print ("One solution: " + x);
+            double x = -b / (2 * a);
+            System.out.println ("One solution: " + new BigDecimal (x).setScale(2, RoundingMode.HALF_UP).doubleValue());
         } else if (discriminant > 0) {
             double x1 = (-b - Math.sqrt (b * b - 4 * a * c)) / (2 * a);
             double x2 = (-b + Math.sqrt (b * b - 4 * a * c)) / (2 * a);
-            System.out.print ("Two solutions: " + x1 + "\t" + x2);
+            System.out.println ("Two solutions: " + new BigDecimal (x1).setScale(2, RoundingMode.HALF_UP).doubleValue()
+                                         + "\t" + new BigDecimal (x2).setScale(2, RoundingMode.HALF_UP).doubleValue());
         }
     }
 
