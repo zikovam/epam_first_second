@@ -443,7 +443,7 @@ public class Solver implements ISolver {
     public void task14 () {
         Scanner scan = new Scanner (System.in);
         int n = Integer.parseInt (scan.nextLine ());
-        int maxLength = 1;
+        int maxLength = 0;
         int nowLength = 1;
         int[] array = new int[n];
 
@@ -454,15 +454,15 @@ public class Solver implements ISolver {
                 nowLength++;
             }
             else if (array[i]<=array[i-1]){
-                maxLength = nowLength;
+                if (maxLength < nowLength)
+                    maxLength = nowLength;
                 nowLength = 1;
             }
         }
         System.out.println (maxLength);
     }
 
-//    Найти сумму элементов матрицы, расположенных между первым и вторым положительными элементами каждой строки.
-    //если в конце строки нет положительного - не считать эту сумму?
+        //    Найти сумму элементов матрицы, расположенных между первым и вторым положительными элементами каждой строки.
     public void task15 () {
         Scanner scan = new Scanner (System.in);
         int n = Integer.parseInt (scan.nextLine ());
@@ -478,11 +478,10 @@ public class Solver implements ISolver {
 
                 if ((matrix[i][j]>0) && (firstPositive))
                     secondPositive = true;
-
-                if ((firstPositive) && (!secondPositive)){
+                else if ((firstPositive) && (!secondPositive)){
                     sum += matrix[i][j];
                 }
-                if ((matrix[i][j]>0) && (!firstPositive))
+                else if ((matrix[i][j]>0) && (!firstPositive))
                     firstPositive = true;
             }
             if (firstPositive && !secondPositive)
@@ -492,7 +491,9 @@ public class Solver implements ISolver {
             firstPositive = false;
             secondPositive = false;
             sumAll += sum;
+            sum = 0;
         }
+
         System.out.println (sumAll);
     }
 
