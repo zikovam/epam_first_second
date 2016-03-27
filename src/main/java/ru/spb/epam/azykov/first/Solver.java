@@ -62,7 +62,10 @@ public class Solver implements ISolver {
 
         public int compare (String s1, String s2) {
 
-            return s1.compareTo (s2);
+            if (s1.length () == s2.length ())
+                return s1.compareTo (s2);
+            else
+                return (s1.length () - s2.length ());
         }
     }
 
@@ -196,7 +199,6 @@ public class Solver implements ISolver {
 
 //    Ввести N слов. Найти слова, состоящие только из различных символов.
 //    В случае, если слово встречается более одного раза - вывести его единожды.
-//    ТУТ НЕ УЧИТЫВАЕТСЯ ЧТО СЛОВО МОЖЕТ ВСТРЕТИТЬСЯ НЕСКОЛЬКО РАЗ
     public void task7 () {
         Scanner scan = new Scanner (System.in);
         int n = Integer.parseInt (scan.nextLine ());
