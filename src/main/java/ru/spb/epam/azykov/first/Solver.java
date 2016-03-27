@@ -62,7 +62,7 @@ public class Solver implements ISolver {
 
         public int compare (String s1, String s2) {
 
-            return s1.length () - s2.length ();
+            return s1.compareTo (s2);
         }
     }
 
@@ -92,24 +92,37 @@ public class Solver implements ISolver {
 //    Ввести N слов. Найти слово, в котором число различных символов минимально. Если таких слов несколько, найти первое из них.
     public void task4 () {
         int n; //количество строк
-        String[] word;
+        String[] words;
         String text;
         Scanner scan = new Scanner (System.in);
         if (scan.hasNextInt ()) {
             n = Integer.parseInt (scan.nextLine ());
             text = scan.nextLine ();
-            word = text.split (" ", n);
-            int indexMinCharVar = 1;
-            int sizeMinCharVar = new HashSet<String> (Arrays.asList (word[0].split (""))).size ();
-            for (int i = 1; i < n; i++) {
-                Set<String> set = new HashSet<String> (Arrays.asList (word[i].split ("")));
+            words = text.split (" ", n);
+
+            String wordMinCharVar = words[0];
+            int sizeMinCharVar = new HashSet<String> (Arrays.asList (words[0].split (""))).size ();
+
+            //другой вариант реализации
+//            for (int i = 1; i < words.length; i++) {
+//                Set<String> set = new HashSet<String> (Arrays.asList (words[i].split ("")));
+//                if (set.size () < sizeMinCharVar) {
+//                    //System.out.println("Слово - " + word[i]);
+//                    indexMinCharVar = i;
+//                    sizeMinCharVar = set.size ();
+//                }
+//            }
+
+            for (String word :
+                    words) {
+                Set<String> set = new HashSet<String> (Arrays.asList (word.split ("")));
                 if (set.size () < sizeMinCharVar) {
                     //System.out.println("Слово - " + word[i]);
-                    indexMinCharVar = i;
+                    wordMinCharVar = word;
                     sizeMinCharVar = set.size ();
                 }
             }
-            System.out.println (word[indexMinCharVar]);
+            System.out.println (wordMinCharVar);
         }
     }
 
