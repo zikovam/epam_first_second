@@ -183,7 +183,7 @@ public class Solver implements ISolver {
                     }
                 }
                 //System.out.println("Word = "+word+": count = "+count);
-                if ((word.length () - 1 == count) && (word.length () > 1)) {
+                if ((word.length () - 1 == count) && (word.length () > 1) && (wordCount == 0)) {
                     System.out.print (word);
                     wordCount++;
                 }
@@ -201,11 +201,19 @@ public class Solver implements ISolver {
         Scanner scan = new Scanner (System.in);
         int n = Integer.parseInt (scan.nextLine ());
         String text = scan.nextLine ();
+        //String text2 = new HashSet<String> (Arrays.asList (text.split ("\\s/,"))).toString ();
+        //System.out.println (text2);
+        LinkedHashSet<String> words = new LinkedHashSet<String> (n);
         for (String word :
                 text.split (" ", n)) {
             int count = new HashSet<String> (Arrays.asList (word.split (""))).size () - 1;
             if (word.length () == count)
-                System.out.print (word + "\t");
+                words.add (word);
+            //System.out.print (word + "\t");
+            }
+        for (String w:
+                words) {
+            System.out.print (w + " ");
         }
     }
 
