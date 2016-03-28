@@ -291,16 +291,12 @@ public class Solver implements ISolver {
         if (discriminant < 0)
             System.out.println ("No solution");
         else if (discriminant == 0) {
-            double x = -b / (2 * a);
-            if (x == 0)
-                System.out.println ("One solution: 0");
-            else
-                System.out.println ("One solution: " + new BigDecimal (x).setScale(2, RoundingMode.HALF_UP).doubleValue());
+            double x = Math.round ((-b / (2 * a))*100);
+            System.out.println ("One solution: " + x/100);
         } else if (discriminant > 0) {
-            double x1 = (-b - Math.sqrt (b * b - 4 * a * c)) / (2 * a);
-            double x2 = (-b + Math.sqrt (b * b - 4 * a * c)) / (2 * a);
-            System.out.println ("Two solutions: " + new BigDecimal (x1).setScale(2, RoundingMode.HALF_UP).doubleValue()
-                    + " " + new BigDecimal (x2).setScale(2, RoundingMode.HALF_UP).doubleValue());
+            double x1 = Math.round (((-b - Math.sqrt (b * b - 4 * a * c)) / (2 * a))*100);
+            double x2 = Math.round (((-b + Math.sqrt (b * b - 4 * a * c)) / (2 * a))*100);
+            System.out.println ("Two solutions: " + x1/100 + "\t" + x2/100);
         }
     }
 
