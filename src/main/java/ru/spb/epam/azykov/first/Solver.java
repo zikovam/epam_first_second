@@ -1015,7 +1015,7 @@ public class Solver implements ISolver {
             }
         }
         if (n == 1) {
-            System.out.println (matrix[0][0]);
+            System.out.println (0);
         } else {
             int maxCount = 0;
             int maxLocal = -100000;
