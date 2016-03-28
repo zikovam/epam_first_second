@@ -902,99 +902,104 @@ public class Solver implements ISolver {
         int n = Integer.parseInt (scan.nextLine ());
         int[][] matrix = new int[n][n];
 
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
-                matrix[i][j] = scan.nextInt ();
-            }
+        if (n == 1){
+            System.out.println (1);
         }
-
-        int count = 0;
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
-                if (localMin (matrix, i, j)) {
-                    //System.out.println ("point = " + i + " " + j);
-                    count++;
+        else {
+            for (int i = 0; i < n; i++) {
+                for (int j = 0; j < n; j++) {
+                    matrix[i][j] = scan.nextInt ();
                 }
             }
+
+            int count = 0;
+            for (int i = 0; i < n; i++) {
+                for (int j = 0; j < n; j++) {
+                    if (localMin (matrix, i, j)) {
+                        //System.out.println ("point = " + i + " " + j);
+                        count++;
+                    }
+                }
+            }
+            System.out.println (count);
         }
-        System.out.println (count);
     }
 
         private boolean localMin (int[][] matrix, int row, int column){
-        int countRowFrom = row - 1;
-        int countRowFor = row + 1;
-        int countColumnFrom = column - 1;
-        int countColumnFor = column + 1;
+            int countRowFrom = row - 1;
+            int countRowFor = row + 1;
+            int countColumnFrom = column - 1;
+            int countColumnFor = column + 1;
 
-        // верхний левый угол матрицы
-        if ((row == 0)&&(column == 0)){
-            countRowFrom = 0;
-            countRowFor = row + 1;
-            countColumnFrom = 0;
-            countColumnFor = column + 1;
-        }
-        //верхняя строка матрицы (крому угловых)
-        else if ((row == 0)&&(column > 0)&&(column < matrix.length-1)){
-            countRowFrom = 0;
-            countRowFor = row + 1;
-            countColumnFrom = column - 1;
-            countColumnFor = column + 1;
-        }
-        //верхний правый угол матрицы
-        else if ((row == 0)&&(column == matrix.length-1)){
-            countRowFrom = 0;
-            countRowFor = row + 1;
-            countColumnFrom = column - 1;
-            countColumnFor = column;
-        }
-        //первый столбец (кроме угловых)
-        else if ((column == 0)&&(row > 0)&&(row < matrix.length-1)){
-            countRowFrom = row - 1;
-            countRowFor = row + 1;
-            countColumnFrom = 0;
-            countColumnFor = column + 1;
-        }
-        //последний слобец матрицы (кроме угловых)
-        else if ((column == matrix.length-1)&&(row > 0)&&(row < matrix.length-1)){
-            countRowFrom = row - 1;
-            countRowFor = row + 1;
-            countColumnFrom = column - 1;
-            countColumnFor = column;
-        }
-        //нижний левый угол матрицы
-        else if ((column == 0)&&(row == matrix.length-1)){
-            countRowFrom = row - 1;
-            countRowFor = row;
-            countColumnFrom = 0;
-            countColumnFor = column + 1;
-        }
-        //нижняя линия матрицы (кроме угловых)
-        else if ((column > 0)&&(column < matrix.length-1)&&(row == matrix.length-1)){
-            countRowFrom = row - 1;
-            countRowFor = row;
-            countColumnFrom = column - 1;
-            countColumnFor = column + 1;
-        }
-        //нижний правый угол
-        else if ((row == matrix.length-1)&&(column == matrix.length-1)){
-            countRowFrom = row - 1;
-            countRowFor = row;
-            countColumnFrom = column - 1;
-            countColumnFor = column;
-        }
+            // верхний левый угол матрицы
+            if ((row == 0)&&(column == 0)){
+                countRowFrom = 0;
+                countRowFor = row + 1;
+                countColumnFrom = 0;
+                countColumnFor = column + 1;
+            }
+            //верхняя строка матрицы (крому угловых)
+            else if ((row == 0)&&(column > 0)&&(column < matrix.length-1)){
+                countRowFrom = 0;
+                countRowFor = row + 1;
+                countColumnFrom = column - 1;
+                countColumnFor = column + 1;
+            }
+            //верхний правый угол матрицы
+            else if ((row == 0)&&(column == matrix.length-1)){
+                countRowFrom = 0;
+                countRowFor = row + 1;
+                countColumnFrom = column - 1;
+                countColumnFor = column;
+            }
+            //первый столбец (кроме угловых)
+            else if ((column == 0)&&(row > 0)&&(row < matrix.length-1)){
+                countRowFrom = row - 1;
+                countRowFor = row + 1;
+                countColumnFrom = 0;
+                countColumnFor = column + 1;
+            }
+            //последний слобец матрицы (кроме угловых)
+            else if ((column == matrix.length-1)&&(row > 0)&&(row < matrix.length-1)){
+                countRowFrom = row - 1;
+                countRowFor = row + 1;
+                countColumnFrom = column - 1;
+                countColumnFor = column;
+            }
+            //нижний левый угол матрицы
+            else if ((column == 0)&&(row == matrix.length-1)){
+                countRowFrom = row - 1;
+                countRowFor = row;
+                countColumnFrom = 0;
+                countColumnFor = column + 1;
+            }
+            //нижняя линия матрицы (кроме угловых)
+            else if ((column > 0)&&(column < matrix.length-1)&&(row == matrix.length-1)){
+                countRowFrom = row - 1;
+                countRowFor = row;
+                countColumnFrom = column - 1;
+                countColumnFor = column + 1;
+            }
+            //нижний правый угол
+            else if ((row == matrix.length-1)&&(column == matrix.length-1)){
+                countRowFrom = row - 1;
+                countRowFor = row;
+                countColumnFrom = column - 1;
+                countColumnFor = column;
+            }
 
-        for (int i = countRowFrom; i <= countRowFor; i++) {
-            for (int j = countColumnFrom; j <= countColumnFor; j++) {
-                if ((i == row)&&(j == column)){
+            for (int i = countRowFrom; i <= countRowFor; i++) {
+                for (int j = countColumnFrom; j <= countColumnFor; j++) {
+                    if ((i == row)&&(j == column)){
 
-                }
-                else if (matrix[i][j] <= matrix[row][column]) {
-                    return false;
+                    }
+                    else if (matrix[i][j] <= matrix[row][column]) {
+                        return false;
+                    }
                 }
             }
+            return true;
         }
-        return true;
-    }
 
 //    Найти наибольший среди локальных максимумов.
 //    Соседями элемента матрицы назовем элементы, имеющие с ним общую сторону или угол.
@@ -1009,24 +1014,27 @@ public class Solver implements ISolver {
                 matrix[i][j] = scan.nextInt ();
             }
         }
-
-        int maxCount = 0;
-        int maxLocal = -100000;
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
-                if (localMax (matrix,i,j)){
-                    //System.out.println ("point = " + i + " " + j);
-                    maxCount++;
-                    if (matrix[i][j] > maxLocal)
-                        maxLocal = matrix[i][j];
+        if (n == 1) {
+            System.out.println (matrix[0][0]);
+        } else {
+            int maxCount = 0;
+            int maxLocal = -100000;
+            for (int i = 0; i < n; i++) {
+                for (int j = 0; j < n; j++) {
+                    if (localMax (matrix, i, j)) {
+                        //System.out.println ("point = " + i + " " + j);
+                        maxCount++;
+                        if (matrix[i][j] > maxLocal)
+                            maxLocal = matrix[i][j];
+                    }
                 }
             }
-        }
 
-        if (maxCount == 0)
-            System.out.println ("NOT FOUND");
-        else
-            System.out.println (maxLocal);
+            if (maxCount == 0)
+                System.out.println ("NOT FOUND");
+            else
+                System.out.println (maxLocal);
+        }
     }
 
         private boolean localMax (int[][] matrix, int row, int column){
@@ -1104,7 +1112,6 @@ public class Solver implements ISolver {
         }
         return true;
     }
-
 
 //    Перестроить заданную матрицу, переставляя в ней столбцы так, чтобы значения их характеристик убывали.
 //    Характеристикой столбца прямоугольной матрицы называется сумма модулей его элементов.
