@@ -444,7 +444,7 @@ public class Solver implements ISolver {
         Scanner scan = new Scanner (System.in);
         int n = Integer.parseInt (scan.nextLine ());
         int maxLength = 0;
-        int nowLength = 1;
+        int nowLength = 0;
         int[] array = new int[n];
 
         array[0] = scan.nextInt ();
@@ -453,12 +453,15 @@ public class Solver implements ISolver {
             if (array[i]>array[i-1]) {
                 nowLength++;
             }
-            else if (array[i]<=array[i-1]){
-                if (maxLength < nowLength)
-                    maxLength = nowLength;
-                nowLength = 1;
+            else {
+                if (maxLength < nowLength) {
+                    maxLength = nowLength + 1;
+                    nowLength = 0;
+                }
             }
         }
+        if (nowLength + 1 == n)
+            maxLength = n;
         System.out.println (maxLength);
     }
 
