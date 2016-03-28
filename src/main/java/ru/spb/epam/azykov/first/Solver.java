@@ -822,29 +822,35 @@ public class Solver implements ISolver {
         int[][] matrix = new int[n][n];
         int[] strMin = new int [n];
 
-        for (int num :
-                strMin) {
-            num = 1000;
+        if (n == 1){
+            scan.nextInt ();
+            System.out.println (1);
         }
-
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
-                matrix[i][j] = scan.nextInt ();
-                if (matrix[i][j] < strMin[i])
-                    strMin[i] = matrix[i][j];
+        else {
+            for (int num :
+                    strMin) {
+                num = 1000;
             }
-        }
 
-        int counter = 0;
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
-                if (matrix[i][j] == strMin[i])
-                    if (isThisSedlovaya (matrix, strMin[i], j, i))
-                        counter++;
+            for (int i = 0; i < n; i++) {
+                for (int j = 0; j < n; j++) {
+                    matrix[i][j] = scan.nextInt ();
+                    if (matrix[i][j] < strMin[i])
+                        strMin[i] = matrix[i][j];
+                }
             }
-        }
 
-        System.out.println (counter);
+            int counter = 0;
+            for (int i = 0; i < n; i++) {
+                for (int j = 0; j < n; j++) {
+                    if (matrix[i][j] == strMin[i])
+                        if (isThisSedlovaya (matrix, strMin[i], j, i))
+                            counter++;
+                }
+            }
+
+            System.out.println (counter);
+        }
     }
 
         private boolean isThisSedlovaya (int[][]matrix, int numb, int column, int row){
