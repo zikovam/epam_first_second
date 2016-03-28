@@ -296,7 +296,7 @@ public class Solver implements ISolver {
         } else if (discriminant > 0) {
             double x1 = Math.round (((-b - Math.sqrt (b * b - 4 * a * c)) / (2 * a))*100);
             double x2 = Math.round (((-b + Math.sqrt (b * b - 4 * a * c)) / (2 * a))*100);
-            System.out.println ("Two solutions: " + x1/100 + "\t" + x2/100);
+            System.out.println ("Two solutions: " + x1/100 + ", "+ x2/100);
         }
     }
 
