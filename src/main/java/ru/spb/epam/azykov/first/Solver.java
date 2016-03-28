@@ -284,10 +284,10 @@ public class Solver implements ISolver {
 //    Параметры уравнения должны задаваться с командной строки.
     public void task10 () {
         Scanner scan = new Scanner (System.in);
-        int a = scan.nextInt ();
-        int b = scan.nextInt ();
-        int c = scan.nextInt ();
-        int discriminant = b * b - 4 * a * c;
+        double a = scan.nextInt ();
+        double b = scan.nextInt ();
+        double c = scan.nextInt ();
+        double discriminant = b * b - 4 * a * c;
         if (discriminant < 0)
             System.out.println ("No solution");
         else if (discriminant == 0) {
@@ -305,53 +305,57 @@ public class Solver implements ISolver {
     public void task11 () {
         Scanner scan = new Scanner (System.in);
         String n = scan.nextLine ();
-        if (n.length () == 1) {
-            switch (n.toCharArray ()[0]) {
-                case ('1'):
-                    System.out.println ("January");
-                    break;
-                case ('2'):
-                    System.out.println ("February");
-                    break;
-                case ('3'):
-                    System.out.println ("March");
-                    break;
-                case ('4'):
-                    System.out.println ("April");
-                    break;
-                case ('5'):
-                    System.out.println ("May");
-                    break;
-                case ('6'):
-                    System.out.println ("June");
-                    break;
-                case ('7'):
-                    System.out.println ("July");
-                    break;
-                case ('8'):
-                    System.out.println ("August");
-                    break;
-                case ('9'):
-                    System.out.println ("September");
-                    break;
+        if ((n.length () == 1)||(n.length () == 2)) {
+            Pattern isItNumber = Pattern.compile ("\\d{1,2}");
+            Matcher mIsItNumber = isItNumber.matcher (n);
+            if (mIsItNumber.find ()) {
+                switch (Integer.parseInt (n)) {
+                    case (1):
+                        System.out.println ("January");
+                        break;
+                    case (2):
+                        System.out.println ("February");
+                        break;
+                    case (3):
+                        System.out.println ("March");
+                        break;
+                    case (4):
+                        System.out.println ("April");
+                        break;
+                    case (5):
+                        System.out.println ("May");
+                        break;
+                    case (6):
+                        System.out.println ("June");
+                        break;
+                    case (7):
+                        System.out.println ("July");
+                        break;
+                    case (8):
+                        System.out.println ("August");
+                        break;
+                    case (9):
+                        System.out.println ("September");
+                        break;
+                    case (10):
+                        System.out.println ("October");
+                        break;
+                    case (11):
+                        System.out.println ("November");
+                        break;
+                    case (12):
+                        System.out.println ("December");
+                        break;
+                    default:
+                        System.out.println ("INCORRECT INPUT DATA");
+                        break;
+                }
             }
+            else
+                System.out.println ("INCORRECT INPUT DATA");
         }
-        else if ((n.length () == 2)&&(n.toCharArray ()[0] == '1')) {
-            switch (n.toCharArray ()[1]) {
-                case ('0'):
-                    System.out.println ("October");
-                    break;
-                case ('1'):
-                    System.out.println ("November");
-                    break;
-                case ('2'):
-                    System.out.println ("December");
-                    break;
-            }
-        }
-        else {
+        else
             System.out.println ("INCORRECT INPUT DATA");
-        }
     }
 
 //    Упорядочить строки матрицы размерности N в порядке возрастания значений элементов k-го столбца.0
