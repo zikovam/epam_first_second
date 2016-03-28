@@ -454,14 +454,17 @@ public class Solver implements ISolver {
                 nowLength++;
             }
             else {
-                if (maxLength < nowLength) {
+                if (maxLength < nowLength + 1) {
                     maxLength = nowLength + 1;
                     nowLength = 0;
                 }
             }
         }
-        if (nowLength + 1 == n)
-            maxLength = n;
+
+        if (maxLength < nowLength + 1) {
+            maxLength = nowLength + 1;
+        }
+
         System.out.println (maxLength);
     }
 
