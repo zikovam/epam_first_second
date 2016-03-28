@@ -468,7 +468,7 @@ public class Solver implements ISolver {
         System.out.println (maxLength);
     }
 
-        //    Найти сумму элементов матрицы, расположенных между первым и вторым положительными элементами каждой строки.
+//    Найти сумму элементов матрицы, расположенных между первым и вторым положительными элементами каждой строки.
     public void task15 () {
         Scanner scan = new Scanner (System.in);
         int n = Integer.parseInt (scan.nextLine ());
@@ -903,7 +903,7 @@ public class Solver implements ISolver {
         int[][] matrix = new int[n][n];
 
         if (n == 1){
-            System.out.println (1);
+            System.out.println (0);
         }
         else {
             for (int i = 0; i < n; i++) {
