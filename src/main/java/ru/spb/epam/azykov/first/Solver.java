@@ -444,7 +444,7 @@ public class Solver implements ISolver {
         Scanner scan = new Scanner (System.in);
         int n = Integer.parseInt (scan.nextLine ());
         int maxLength = 0;
-        int nowLength = 0;
+        int nowLength = 1;
         int[] array = new int[n];
 
         array[0] = scan.nextInt ();
@@ -454,15 +454,18 @@ public class Solver implements ISolver {
                 nowLength++;
             }
             else {
-                if (maxLength < nowLength + 1) {
-                    maxLength = nowLength + 1;
-                    nowLength = 0;
+                if (maxLength < nowLength) {
+                    maxLength = nowLength;
+                    nowLength = 1;
                 }
             }
         }
 
-        if (maxLength < nowLength + 1) {
-            maxLength = nowLength + 1;
+        if (maxLength < nowLength) {
+            maxLength = nowLength;
+        }
+        else if (maxLength == 1){
+            maxLength = 0;
         }
 
         System.out.println (maxLength);
@@ -780,9 +783,10 @@ public class Solver implements ISolver {
 
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
-                if ((matrix[i][j] == 0)&&(j < n-1)){
-                    matrix[i][j] = matrix[i][j+1];
-                    matrix[i][j+1] = 0;
+                if (matrix[i][j] == 0){
+                    nullTransfer (matrix,i,j);
+                    //matrix[i][j] = matrix[i][j+1];
+                    //matrix[i][j+1] = 0;
                 }
             }
         }
@@ -795,6 +799,13 @@ public class Solver implements ISolver {
             System.out.println (matrix[i][matrix.length-1]);
         }
     }
+
+        private void nullTransfer (int[][] matrix, int row, int column){
+            for (int j = column+1; j < matrix.length; j++) {
+                matrix[row][j-1] = matrix[row][j];
+                matrix[row][j] = 0;
+            }
+        }
 
 //    Округлить все элементы матрицы до целого числа.
     //спросить про окугление
@@ -903,7 +914,7 @@ public class Solver implements ISolver {
         int[][] matrix = new int[n][n];
 
         if (n == 1){
-            System.out.println (0);
+            System.out.println (n);
         }
         else {
             for (int i = 0; i < n; i++) {
@@ -1015,7 +1026,7 @@ public class Solver implements ISolver {
             }
         }
         if (n == 1) {
-            System.out.println (0);
+            System.out.println (matrix[0][0]);
         } else {
             int maxCount = 0;
             int maxLocal = -100000;
