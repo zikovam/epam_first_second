@@ -785,8 +785,6 @@ public class Solver implements ISolver {
             for (int j = 0; j < n; j++) {
                 if (matrix[i][j] == 0){
                     nullTransfer (matrix,i,j);
-                    //matrix[i][j] = matrix[i][j+1];
-                    //matrix[i][j+1] = 0;
                 }
             }
         }
