@@ -446,29 +446,32 @@ public class Solver implements ISolver {
         int maxLength = 0;
         int nowLength = 1;
         int[] array = new int[n];
-
-        array[0] = scan.nextInt ();
-        for (int i = 1; i < n; i++) {
-            array[i] = scan.nextInt ();
-            if (array[i]>array[i-1]) {
-                nowLength++;
-            }
-            else {
-                if (maxLength < nowLength) {
-                    maxLength = nowLength;
-                    nowLength = 1;
+        if (n == 1){
+            scan.nextInt ();
+            System.out.println (0);
+        }
+        else {
+            array[0] = scan.nextInt ();
+            for (int i = 1; i < n; i++) {
+                array[i] = scan.nextInt ();
+                if (array[i] > array[i - 1]) {
+                    nowLength++;
+                } else {
+                    if (maxLength < nowLength) {
+                        maxLength = nowLength;
+                        nowLength = 1;
+                    }
                 }
             }
-        }
 
-        if (maxLength < nowLength) {
-            maxLength = nowLength;
-        }
-        else if (maxLength == 1){
-            maxLength = 0;
-        }
+            if (maxLength < nowLength) {
+                maxLength = nowLength;
+            } else if (maxLength == 1) {
+                maxLength = 0;
+            }
 
-        System.out.println (maxLength);
+            System.out.println (maxLength);
+        }
     }
 
 //    Найти сумму элементов матрицы, расположенных между первым и вторым положительными элементами каждой строки.
@@ -773,36 +776,48 @@ public class Solver implements ISolver {
     public void task21 () {
         Scanner scan = new Scanner (System.in);
         int n = Integer.parseInt (scan.nextLine ());
-        int[][] matrix = new int[n][n];
+        ArrayList <ArrayList<Integer>> matrix = new ArrayList<ArrayList<Integer>> ();
+        //int[][] matrix = new int[n][n];
 
         for (int i = 0; i < n; i++) {
+            ArrayList<Integer> line = new ArrayList<Integer> (n);
             for (int j = 0; j < n; j++) {
-                matrix[i][j] = scan.nextInt ();
+                line.add (scan.nextInt ());
             }
+            matrix.add (line);
         }
 
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
-                if (matrix[i][j] == 0){
-                    nullTransfer (matrix,i,j);
+        for (ArrayList<Integer> line :
+                matrix) {
+            nullTransfer (line);
+        }
+
+        System.out.println (n);
+        for (ArrayList<Integer> line :
+                matrix) {
+            for (int i = 0; i < n-1; i++) {
+                System.out.print (line.get (i)+ "\t");
+            }
+            System.out.println (line.get (n-1));
+        }
+    }
+
+        private void nullTransfer (ArrayList<Integer> line){
+            for (int j = 0; j < line.size (); j++) {
+                if ((line.get (j)==0)&&(!nulls (line,j))){
+                    line.remove (j);
+                    line.add (0);
+                    j = -1;
                 }
             }
         }
 
-        System.out.println (n);
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n-1; j++) {
-                System.out.print (matrix[i][j] + "\t");
+        private boolean nulls (ArrayList<Integer> line, int j){
+            for (int i = j; i < line.size (); i++) {
+                if (line.get (i)!= 0)
+                    return false;
             }
-            System.out.println (matrix[i][matrix.length-1]);
-        }
-    }
-
-        private void nullTransfer (int[][] matrix, int row, int column){
-            for (int j = column+1; j < matrix.length; j++) {
-                matrix[row][j-1] = matrix[row][j];
-                matrix[row][j] = 0;
-            }
+            return true;
         }
 
 //    Округлить все элементы матрицы до целого числа.
