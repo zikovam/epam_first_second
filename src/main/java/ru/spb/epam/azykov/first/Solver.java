@@ -816,6 +816,7 @@ public class Solver implements ISolver {
         return matrix;
     }
 
+
 //    Преобразовать строки матрицы таким образом, чтобы элементы, равные нулю, располагались после всех остальных.
     public void task21 () {
         Scanner scan = new Scanner (System.in);
