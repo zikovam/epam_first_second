@@ -600,61 +600,105 @@ public class Solver implements ISolver {
     public void task18 () {
         Scanner scan = new Scanner (System.in);
         int n = Integer.parseInt (scan.nextLine ());
-        int[][] matrix = new int[n][n];
+        ArrayList<ArrayList<Integer>> matrix = new ArrayList<ArrayList<Integer>> ();
+        ArrayList<ArrayList<Integer>> matrixMax = new ArrayList<ArrayList<Integer>> (n);
         int max = 0;
 
         for (int i = 0; i < n; i++) {
+            ArrayList<Integer> line = new ArrayList<Integer> (n);
+            ArrayList<Integer> lineMax = new ArrayList<Integer> (n);
             for (int j = 0; j < n; j++) {
-                matrix[i][j] = scan.nextInt ();
-                if (max<matrix[i][j])
-                    max = matrix[i][j];
+                line.add (scan.nextInt ());
+                lineMax.add (1);
+                if (max<line.get (j))
+                    max = line.get (j);
             }
+            matrix.add (line);
+            matrixMax.add (lineMax);
         }
 
-        for (int i = 0; i < matrix.length; i++) {
-            for (int j = 0; j < matrix.length; j++) {
-                if (matrix[i][j] == max) {
-                    matrix = reorganizeMatrix (matrix,i,j);
-                    i = 0;
-                    //System.out.println ("length = "+matrix.length);
-                    break;
+        fillTestMatrix (matrix,matrixMax,max);
+
+        int[] rows = new int[n];
+        int[] columns = new int[n];
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                if (matrixMax.get (i).get (j) == 0) {
+                    columns[j]++;
+                    rows[i]++;
                 }
             }
         }
 
-        System.out.println (matrix.length);
-        for (int i = 0; i < matrix.length; i++) {
-            for (int j = 0; j < matrix.length; j++) {
-                System.out.print (matrix[i][j]+"\t");
+        int counter = 0;
+        for (int i = 0; i < matrix.size (); i++) {
+            if (rows[counter] == n) {
+                matrix.remove (i);
+                matrixMax.remove (i);
+                i--;
+            }
+            counter++;
+        }
+
+        counter = 0;
+        for (int i = 0; i < matrix.get(matrix.size()-1).size(); i++) {
+            if (columns[counter] == n){
+                for (ArrayList<Integer> line :
+                        matrix) {
+                    line.remove (i);
+                }
+                for (ArrayList<Integer> line :
+                        matrixMax) {
+                    line.remove (i);
+                }
+                i--;
+            }
+            counter++;
+        }
+
+        if (matrix.size () == matrix.get (0).size ()){
+            System.out.println (matrix.size ());
+        }
+        else {
+            System.out.println (matrix.size ());
+            System.out.println (matrix.get (0).size ());
+        }
+        for (int i = 0; i < matrix.size (); i++) {
+            for (int j = 0; j < matrix.get (0).size (); j++) {
+                System.out.print (matrix.get (i).get (j)+"\t");
             }
             System.out.println ();
         }
+
+        //вывод проверочной матрицы
+    //        if (matrixMax.size () == matrixMax.get (0).size ()){
+    //            System.out.println (matrixMax.size ());
+    //        }
+    //        else {
+    //            System.out.println (matrixMax.size ());
+    //            System.out.println (matrixMax.get (0).size ());
+    //        }
+    //        for (int i = 0; i < matrixMax.size (); i++) {
+    //            for (int j = 0; j < matrixMax.get (0).size (); j++) {
+    //                System.out.print (matrixMax.get (i).get (j)+"\t");
+    //            }
+    //            System.out.println ();
+    //        }
     }
 
-    //переделанный метод GetMinor
-        private int[][] reorganizeMatrix(int[][] matrix, int row, int column){
-        int minorLength = matrix.length-1;
-        int[][] minor = new int[minorLength][minorLength];
-        int dI = 0;//эти переменные для того, чтобы "пропускать" ненужные нам строку и столбец
-        int dJ;
-        for(int i=0; i<=minorLength; i++){
-            dJ=0;
-            for(int j=0; j<=minorLength; j++){
-                if(i==row){
-                    dI=1;
-                }
-                else{
-                    if(j==column){
-                        dJ=1;
-                    }
-                    else{
-                        minor[i-dI][j-dJ] = matrix[i][j];
+        public void fillTestMatrix (ArrayList<ArrayList<Integer>> matrix, ArrayList<ArrayList<Integer>> testMatrix, int max){
+
+            for (int i = 0; i < matrix.size (); i++) {
+                for (int j = 0; j < matrix.size (); j++) {
+                    if (matrix.get (i).get (j) == max) {
+                        for (int k = 0; k < matrix.size (); k++) {
+                            testMatrix.get (i).set (k,0);
+                            testMatrix.get (k).set (j, 0);
+                        }
                     }
                 }
             }
         }
-        return minor;
-    }
 
 //    Уплотнить матрицу, удаляя из нее строки и столбцы, заполненные нулями.
     public void task19 () {
