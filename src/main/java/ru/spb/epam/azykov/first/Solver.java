@@ -663,6 +663,7 @@ public class Solver implements ISolver {
             System.out.println (matrix.size ());
             System.out.println (matrix.get (0).size ());
         }
+
         for (int i = 0; i < matrix.size (); i++) {
             for (int j = 0; j < matrix.get (0).size (); j++) {
                 System.out.print (matrix.get (i).get (j)+"\t");
@@ -686,13 +687,13 @@ public class Solver implements ISolver {
     //        }
     }
 
-        public void fillTestMatrix (ArrayList<ArrayList<Integer>> matrix, ArrayList<ArrayList<Integer>> testMatrix, int max){
+        public void fillTestMatrix (ArrayList<ArrayList<Integer>> matrix, ArrayList<ArrayList<Integer>> testMatrix, int max) {
 
             for (int i = 0; i < matrix.size (); i++) {
                 for (int j = 0; j < matrix.size (); j++) {
                     if (matrix.get (i).get (j) == max) {
                         for (int k = 0; k < matrix.size (); k++) {
-                            testMatrix.get (i).set (k,0);
+                            testMatrix.get (i).set (k, 0);
                             testMatrix.get (k).set (j, 0);
                         }
                     }
