@@ -664,7 +664,6 @@ public class Solver implements ISolver {
             }
             System.out.println ();
         }
-
         //вывод проверочной матрицы
     //        if (matrixMax.size () == matrixMax.get (0).size ()){
     //            System.out.println (matrixMax.size ());
