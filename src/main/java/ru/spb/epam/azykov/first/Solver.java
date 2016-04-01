@@ -656,13 +656,8 @@ public class Solver implements ISolver {
             counter++;
         }
 
-        if (matrix.size () == matrix.get (0).size ()){
-            System.out.println (matrix.size ());
-        }
-        else {
             System.out.println (matrix.size ());
             System.out.println (matrix.get (0).size ());
-        }
         for (int i = 0; i < matrix.size (); i++) {
             for (int j = 0; j < matrix.get (0).size (); j++) {
                 System.out.print (matrix.get (i).get (j)+"\t");
