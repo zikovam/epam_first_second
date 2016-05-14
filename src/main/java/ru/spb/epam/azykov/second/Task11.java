@@ -1,13 +1,10 @@
 package ru.spb.epam.azykov.second;
 
-import com.sun.xml.internal.bind.v2.TODO;
-import com.sun.xml.internal.xsom.impl.scd.Iterators;
 import ru.spb.epam.common.second.ITestableTask11;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
-
 
 /**
  * Created by zikovam on 09.05.16.
@@ -62,9 +59,10 @@ public class Task11 implements ITestableTask11 {
                         i.next();
                 }
             }
-            System.out.println(peoples);
+            //System.out.println(peoples);
         }
 
         return peoples.get(0);
     }
 }
+

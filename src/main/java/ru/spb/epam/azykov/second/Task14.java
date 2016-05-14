@@ -1,18 +1,11 @@
 package ru.spb.epam.azykov.second;
 
-import javafx.beans.binding.When;
 import ru.spb.epam.common.second.ITestableTask14;
 import ru.spb.epam.common.second.ITestableTask14.INumberCollection;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
 import java.util.NoSuchElementException;
-
-import static javafx.scene.input.KeyCode.T;
-
-//import static javafx.scene.input.KeyCode.T;
 
 /**
  * Created by zikovam on 09.05.16.
