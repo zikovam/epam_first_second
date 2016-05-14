@@ -22,6 +22,7 @@ public class Task4 implements ITestableTask4 {
         }
     }
 
+
     @Override
     public Set<Integer> union (Set<Integer> first, Set<Integer> second) {
         if (first.isEmpty()) return second;
