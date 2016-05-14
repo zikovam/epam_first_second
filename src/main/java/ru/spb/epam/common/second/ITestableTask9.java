@@ -19,4 +19,5 @@ public interface ITestableTask9 extends ITaskStorage.ITestableTask {
      * @return Множество полученных слов.
      */
     HashSet<String> getUniqueWords(File input);
+
 }
