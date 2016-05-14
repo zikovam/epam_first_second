@@ -55,7 +55,6 @@ public class Task17 implements ITestableTask17 {
                     x = firstLine.first().getX() + Ua * point1_x2_MINUS_point1_x1;
                     y = firstLine.first().getY() + Ua * point1_y2_MINUS_point1_y1;
                     preResult.add(new pointI2(x,y));
-                    //System.out.println("x= "+x+" y= "+y);
                 }
             }
         }
