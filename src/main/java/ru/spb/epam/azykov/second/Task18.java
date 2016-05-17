@@ -71,7 +71,7 @@ public class Task18 implements ITestableTask18 {
 
         IRectangularIntegerMatrix result = new IntMatrix(res);
 
-        return result;
+        return result; //?
     }
 
     private int lookThrowColumns (int beginStroke,int beginColumn, int endColumn, int numMeaning, IRectangularIntegerMatrix matrix){
