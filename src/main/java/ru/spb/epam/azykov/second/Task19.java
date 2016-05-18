@@ -10,6 +10,7 @@ import java.util.Set;
  */
 public class Task19 implements ITestableTask19 {
 
+
     @Override
     public int getNumberOvertaking(Set<ICar> cars, long lengthLap, int numberLaps) {
         int overtaking = 0;
