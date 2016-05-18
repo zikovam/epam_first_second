@@ -24,6 +24,7 @@ public class Task17 implements ITestableTask17 {
 
         while (line1.hasNext()){
             ISegment firstLine = line1.next();
+            line2 = segments.iterator();
             while (line2.hasNext()){
                 ISegment secondLine = line2.next();
 
@@ -55,11 +56,12 @@ public class Task17 implements ITestableTask17 {
                     x = firstLine.first().getX() + Ua * point1_x2_MINUS_point1_x1;
                     y = firstLine.first().getY() + Ua * point1_y2_MINUS_point1_y1;
                     preResult.add(new pointI2(x,y));
+//                    System.out.println("x= "+x+" y= "+y);
                 }
             }
         }
 
-        double minX = Double.MAX_VALUE;
+        Double minX = Double.MAX_VALUE;
         Set<I2DPoint> result = new HashSet<>();
         for (I2DPoint point:
                 preResult) {
@@ -68,7 +70,8 @@ public class Task17 implements ITestableTask17 {
 
         for (I2DPoint p:
                 preResult) {
-            if (p.getX() == minX)
+            Double thisx = p.getX();
+            if (thisx.equals(minX))
                 result.add(p);
         }
 
